@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlinkGuard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Face API JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.10.0/dist/face-api.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>BlinkGuard</h1>
+        <p>Detección de ojos cerrados</p>
+    </header>
+    <main>
+        <div class="video-container">
+            <video id="video" autoplay muted playsinline></video>
+            <canvas id="overlay"></canvas>
+        </div>
+        <div class="status-panel">
+            <p>Estado: <span id="status">Cargando cámara...</span></p>
+            <p>Ojos cerrados: <span id="timer">0.0</span> s</p>
+        </div>
+        <audio id="alert-sound" src="alert.wav"></audio>
+    </main>
+    <footer>
+        <p>© 2026 BlinkGuard</p>
+    </footer>
+</body>
+
+</html>
