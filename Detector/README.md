@@ -1,6 +1,3 @@
-# Nodo n8n - Fatigue Detector (Detector de Fatiga Ocular)
-
-Este es un nodo personalizado para [n8n](https://n8n.io/) que detecta fatiga ocular mediante análisis de video en tiempo real usando MediaPipe y OpenCV.
 
 ## Características
 
