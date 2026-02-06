@@ -1,0 +1,123 @@
+{
+    "name": "n8n-nodes-fatigue-detector",
+    "version": "1.0.0",
+    "description": "Nodo n8n para detectar fatiga ocular mediante cámara",
+    "keywords": [
+        "n8n-community-node",
+        "fatigue",
+        "eye-detection",
+        "mediapipe",
+        "opencv"
+    ],
+    "license": "MIT",
+    "author": {
+        "name": "Antigravity",
+        "email": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "bugs": {
+        "url": ""
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "lint": "eslint --ext .ts --ignore-path .gitignore .",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "prepare": "npm run build"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "n8n-workflow": "*",
+        "opencv4nodejs": "^6.2.0",
+        "mediapipe": "^0.10.0",
+        "@mediapipe/face_mesh": "^0.4.1633559619"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/opencv4nodejs": "^6.2.0",
+        "typescript": "^5.0.0",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0",
+        "eslint": "^8.0.0",
+        "jest": "^29.0.0",
+        "ts-jest": "^29.0.0"
+    },
+    "n8n": {
+        "n8nNodes": [
+            {
+                "name": "fatigueDetector",
+                "displayName": "Fatigue Detector",
+                "icon": "file:icon.svg",
+                "group": [
+                    "input"
+                ],
+                "version": 1,
+                "description": "Detecta fatiga ocular mediante análisis de video en tiempo real",
+                "defaults": {
+                    "name": "Fatigue Detector"
+                },
+                "inputs": [
+                    "main"
+                ],
+                "outputs": [
+                    "main"
+                ],
+                "properties": [
+                    {
+                        "displayName": "Eye Closed Threshold",
+                        "name": "eyeClosedThreshold",
+                        "type": "number",
+                        "default": 0.18,
+                        "description": "Umbral de relación de aspecto del ojo para considerar ojo cerrado",
+                        "typeOptions": {
+                            "minValue": 0.05,
+                            "maxValue": 0.5
+                        }
+                    },
+                    {
+                        "displayName": "Closed Time Limit (seconds)",
+                        "name": "closedTimeLimit",
+                        "type": "number",
+                        "default": 3,
+                        "description": "Segundos con los ojos cerrados para activar la alerta",
+                        "typeOptions": {
+                            "minValue": 1,
+                            "maxValue": 30
+                        }
+                    },
+                    {
+                        "displayName": "Alert Mode",
+                        "name": "alertMode",
+                        "type": "options",
+                        "default": "trigger",
+                        "options": [
+                            {
+                                "name": "Trigger Workflow",
+                                "value": "trigger"
+                            },
+                            {
+                                "name": "Return Data Only",
+                                "value": "data"
+                            }
+                        ],
+                        "description": "Modo de alerta cuando se detecta fatiga"
+                    },
+                    {
+                        "displayName": "Camera Index",
+                        "name": "cameraIndex",
+                        "type": "number",
+                        "default": 0,
+                        "description": "Índice de la cámara a usar"
+                    }
+                ]
+            }
+        ]
+    }
+}
